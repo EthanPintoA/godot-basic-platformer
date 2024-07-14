@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://eyi1m1iy3onu"]
+[gd_scene load_steps=14 format=3 uid="uid://eyi1m1iy3onu"]
 
 [ext_resource type="PackedScene" uid="uid://bylab1iy7h5q3" path="res://scenes/player.tscn" id="1_mv1dm"]
 [ext_resource type="Texture2D" uid="uid://gcjn6uk74myv" path="res://assets/sprites/world_tileset.png" id="2_ounuv"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvs3tf6xjai3j" path="res://scenes/coin.tscn" id="4_qe76v"]
 [ext_resource type="PackedScene" uid="uid://60y3gcfldbr1" path="res://scenes/killzone.tscn" id="5_mgn50"]
 [ext_resource type="PackedScene" uid="uid://boj2vp6818nxh" path="res://scenes/slime.tscn" id="6_6gusx"]
+[ext_resource type="FontFile" uid="uid://381ol0gha8ev" path="res://assets/fonts/PixelOperator8.ttf" id="7_c7w7l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cx64r"]
 texture = ExtResource("2_ounuv")
@@ -411,6 +412,21 @@ texture = ExtResource("2_ounuv")
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_cx64r")
 
+[sub_resource type="Animation" id="Animation_x1r01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(344, 8)]
+}
+
 [sub_resource type="Animation" id="Animation_cmm6v"]
 resource_name = "move"
 length = 1.5
@@ -426,21 +442,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(344, 8), Vector2(440, 8)]
-}
-
-[sub_resource type="Animation" id="Animation_x1r01"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(344, 8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e3iey"]
@@ -495,7 +496,7 @@ position = Vector2(136, 24)
 position = Vector2(72, -88)
 
 [node name="Coin5" parent="CoinGroup" instance=ExtResource("4_qe76v")]
-position = Vector2(504, -8)
+position = Vector2(664, -8)
 
 [node name="Coin6" parent="CoinGroup" instance=ExtResource("4_qe76v")]
 position = Vector2(760, -72)
@@ -517,3 +518,31 @@ shape = SubResource("WorldBoundaryShape2D_b4og0")
 
 [node name="Slime" parent="." instance=ExtResource("6_6gusx")]
 position = Vector2(528, 32)
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="JumpHint" type="Label" parent="Labels"]
+offset_left = -112.0
+offset_top = -16.0
+offset_right = -26.0
+theme_override_fonts/font = ExtResource("7_c7w7l")
+theme_override_font_sizes/font_size = 8
+text = "Space to Jump"
+
+[node name="EnemyHint" type="Label" parent="Labels"]
+offset_left = 440.0
+offset_top = -24.0
+offset_right = 576.0
+offset_bottom = -8.0
+theme_override_fonts/font = ExtResource("7_c7w7l")
+theme_override_font_sizes/font_size = 8
+text = "Looks deadly..."
+
+[node name="NearEndHint" type="Label" parent="Labels"]
+offset_left = 704.0
+offset_top = -104.0
+offset_right = 840.0
+offset_bottom = -88.0
+theme_override_fonts/font = ExtResource("7_c7w7l")
+theme_override_font_sizes/font_size = 8
+text = "Almost there!"
